@@ -44,7 +44,7 @@
 // подключение к db
       try {
       $pdo = new PDO(
-        'mysql:host=localhost;dbname=global;charset=utf8',
+        "mysql:host=$host;dbname=$db;charset=utf8;",
         $user,
         $password,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -58,10 +58,6 @@
         $isbn = $_GET['isbn'];
         $name = $_GET['name'];
         $author = $_GET['author'];
-
-        $isbn = htmlspecialchars($isbn);
-        $name = htmlspecialchars($name);
-        $author = htmlspecialchars($author);
 
         $sql2 = "SELECT * FROM `books` WHERE `isbn` LIKE  ? AND `name` LIKE ? AND `author` LIKE ? ";
         $statements = $pdo->prepare($sql2);
